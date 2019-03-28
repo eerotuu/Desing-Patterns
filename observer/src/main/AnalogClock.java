@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 /**
  * Implemented graphics by modifying code found in:
  * https://www.c-sharpcorner.com/UploadFile/433c33/creating-analog-clock-in-java/
- * 
+ *
  * @author Eero
  */
 public class AnalogClock extends JPanel implements Observer {
@@ -52,17 +52,17 @@ public class AnalogClock extends JPanel implements Observer {
             repaint();
         }
     }
-    
+
     @Override
     public void paint(Graphics g) {
         int xhour, yhour, xminute, yminute, xsecond, ysecond, second, minute, hour;
         Graphics2D g2 = (Graphics2D) g;
         drawStructure(g2);
-        
+
         second = timer.getSeconds();
         minute = timer.getMinutes();
         hour = timer.getHours();
-  
+
         xsecond = (int) (Math.cos(second * 3.14f / 30 - 3.14f / 2) * 120 + xcenter);
         ysecond = (int) (Math.sin(second * 3.14f / 30 - 3.14f / 2) * 120 + ycenter);
         xminute = (int) (Math.cos(minute * 3.14f / 30 - 3.14f / 2) * 100 + xcenter);
@@ -70,9 +70,8 @@ public class AnalogClock extends JPanel implements Observer {
         xhour = (int) (Math.cos((hour * 30 + minute / 2) * 3.14f / 180 - 3.14f / 2) * 80 + xcenter);
         yhour = (int) (Math.sin((hour * 30 + minute / 2) * 3.14f / 180 - 3.14f / 2) * 80 + ycenter);
 
-  
         g2.setColor(Color.black);
-       
+
         if (xminute != lastxm || yminute != lastym) {
             g2.drawLine(xcenter, ycenter - 1, lastxm, lastym);
             g2.drawLine(xcenter - 1, ycenter, lastxm, lastym);
@@ -81,7 +80,7 @@ public class AnalogClock extends JPanel implements Observer {
             g2.drawLine(xcenter, ycenter - 1, lastxh, lastyh);
             g2.drawLine(xcenter - 1, ycenter, lastxh, lastyh);
         }
-        
+
         g2.setStroke(new BasicStroke(3));
         g2.drawLine(xcenter, ycenter, xsecond, ysecond);
 
@@ -98,18 +97,18 @@ public class AnalogClock extends JPanel implements Observer {
         lastxh = xhour;
         lastyh = yhour;
     }
-    
+
     private void drawStructure(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setFont(new Font("TimesRoman", Font.BOLD, 20));
-        g2.setColor(new Color(234,234,234));
+        g2.setColor(new Color(234, 234, 234));
         g2.fillOval(xcenter - 150, ycenter - 150, 300, 300);
-        
+
         g2.setColor(Color.black);
         g2.setStroke(new BasicStroke(5));
-        g2.drawOval(xcenter -150, ycenter -150, 300, 300);
+        g2.drawOval(xcenter - 150, ycenter - 150, 300, 300);
         g2.fillOval(xcenter - 10, ycenter - 10, 20, 20);
-        
+
         g2.drawString("9", xcenter - 140, ycenter + 7);
         g2.drawString("3", xcenter + 130, ycenter + 7);
         g2.drawString("12", xcenter - 10, ycenter - 125);

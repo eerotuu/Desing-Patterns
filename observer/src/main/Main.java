@@ -6,18 +6,17 @@
 package main;
 
 /**
- * 
+ *
  * @author Eero
  */
 public class Main {
-    
+
     public static void main(String[] args) {
-        
+
         DigitalClock digitalClock = new DigitalClock(new ClockTimer());
         AnalogClock analogClock = new AnalogClock(new ClockTimer());
-        
+
         digitalClock.start();
         analogClock.start();
-
     }
 }

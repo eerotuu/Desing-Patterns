@@ -5,11 +5,11 @@
  */
 package main;
 
-
 /**
  *
  * @author Eero
  */
 public interface Observer {
+
     public abstract void update(Subject s);
 }

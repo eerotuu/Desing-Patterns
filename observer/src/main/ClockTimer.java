@@ -47,7 +47,7 @@ public class ClockTimer extends Subject implements Runnable {
         return seconds;
     }
 
-    void tick() {  
+    void tick() {
         seconds++;
         if (seconds > 59) {
             seconds = 0;
@@ -56,7 +56,7 @@ public class ClockTimer extends Subject implements Runnable {
                 minutes = 0;
                 hours++;
             }
-        }  
+        }
         notifyObservers();
     }
 
@@ -71,11 +71,9 @@ public class ClockTimer extends Subject implements Runnable {
             }
             tick();
         }
-
     }
 
     public void stop() {
         running = false;
     }
-
 }
