@@ -7,6 +7,7 @@ package main.pieces;
 
 import javafx.util.Pair;
 import main.board.ChessBoard;
+import main.board.Tile;
 
 /**
  * DONE
@@ -21,15 +22,15 @@ public class Rook extends ChessPiece {
     @Override
     public boolean isValidMove(Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
         
+        Tile toTile = ChessBoard.getTile(to);
+        
         int xFrom = from.getKey();
         int yFrom = from.getValue();
         int xTo = to.getKey();
         int yTo = to.getValue();
         
         if(xTo > 7 || xTo < 0 || yTo > 7 || yTo < 0) return false;
-
-        int movingColor = ChessBoard.getTile(new Pair<>(xFrom, yFrom)).getPiece().getColor();
-        
+   
         int xNegative;
         int yNegative;
 
@@ -49,7 +50,8 @@ public class Rook extends ChessPiece {
             yMovement = yFrom - yTo;
             yNegative = -1;
         }
-
+        
+        // vertical movement
         if (xMovement == 0 && yMovement > 0) {
             for (int i = 1; i < yMovement; i++) {
                 if (ChessBoard.getTile(new Pair<>(xFrom, yFrom + i * yNegative)).isReserved()) {
@@ -57,25 +59,24 @@ public class Rook extends ChessPiece {
                 }
             }
             if (!ChessBoard.getTile(new Pair<>(xTo, yTo)).isReserved()
-                    || ChessBoard.getTile(new Pair<>(xTo, yTo)).getPiece().getColor() != movingColor) {
+                    || toTile.getPiece().getColor() != this.getColor()) {
                 return true;
             }
 
         }
-
+        
+        // horizontal movement
         if (xMovement > 0 && yMovement == 0) {
             for (int i = 1; i < xMovement; i++) {                
                 if (ChessBoard.getTile(new Pair<>(xFrom + i * xNegative, yFrom)).isReserved()) {
                     return false;
                 }
             }
-
             if (!ChessBoard.getTile(new Pair<>(xTo, yTo)).isReserved()
-                    || ChessBoard.getTile(new Pair<>(xTo, yTo)).getPiece().getColor() != movingColor) {
+                    || toTile.getPiece().getColor() != this.getColor()) {
                 return true;
             }
-        }
-        System.out.println("vittu");
+        } 
         return false;
     }
 

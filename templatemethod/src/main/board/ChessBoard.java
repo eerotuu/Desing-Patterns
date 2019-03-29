@@ -83,7 +83,6 @@ public class ChessBoard {
         return board[y][x];
     }
     
-
     public void print() {
         System.out.println("  0 1 2 3 4 5 6 7");
         for (int y = 7; y >= 0; y--) {

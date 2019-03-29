@@ -7,6 +7,7 @@ package main.pieces;
 
 import javafx.util.Pair;
 import main.board.ChessBoard;
+import main.board.Tile;
 
 /**
  *
@@ -20,6 +21,9 @@ public class Queen extends ChessPiece {
 
     @Override
     public boolean isValidMove(Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        
+        Tile toTile = ChessBoard.getTile(to);
+        
         int xFrom = from.getKey();
         int yFrom = from.getValue();
         int xTo = to.getKey();
@@ -27,12 +31,9 @@ public class Queen extends ChessPiece {
 
         int xNegative;
         int yNegative;
-
-        if (xTo > 7 || xTo < 0 || yTo > 7 || yTo < 0) {
-            return false;
-        }
-
-        int movingColor = ChessBoard.getTile(new Pair<>(xFrom, yFrom)).getPiece().getColor();
+        
+        // out of bounds
+        if (xTo > 7 || xTo < 0 || yTo > 7 || yTo < 0) return false;
 
         int xMovement;
         if (xFrom > xTo) {
@@ -50,45 +51,52 @@ public class Queen extends ChessPiece {
             yMovement = yFrom - yTo;
             yNegative = -1;
         }
-
+        
+        // diagonal movemnt
         if (xMovement == yMovement) {
+            
+            // check that path is clear
             for (int i = 1; i < yMovement - 1; i++) {
                 if (ChessBoard.getTile(new Pair<>(xFrom + i * xNegative, yFrom + i * yNegative)).isReserved()) {
                     return false;
                 }
             }
-            if (!ChessBoard.getTile(new Pair<>(xTo, yTo)).isReserved()
-                    || ChessBoard.getTile(new Pair<>(xTo, yTo)).getPiece().getColor() != movingColor) {
+            
+            if (!toTile.isReserved() || toTile.getPiece().getColor() != this.getColor()) {
                 return true;
             }
         }
-
+        
+        // vertical movement
         if (xMovement == 0 && yMovement > 0) {
+            
+            // check that path is clear
             for (int i = 1; i < yMovement; i++) {
                 if (ChessBoard.getTile(new Pair<>(xFrom, yFrom + i * yNegative)).isReserved()) {
                     return false;
                 }
             }
-            if (!ChessBoard.getTile(new Pair<>(xTo, yTo)).isReserved()
-                    || ChessBoard.getTile(new Pair<>(xTo, yTo)).getPiece().getColor() != movingColor) {
+            
+            if (!toTile.isReserved() || toTile.getPiece().getColor() != this.getColor()) {
                 return true;
             }
 
         }
-
+        
+        // horizontal movement
         if (xMovement > 0 && yMovement == 0) {
+            
+            // check that path is clear
             for (int i = 1; i < xMovement; i++) {
                 if (ChessBoard.getTile(new Pair<>(xFrom + i * xNegative, yFrom)).isReserved()) {
                     return false;
                 }
             }
 
-            if (!ChessBoard.getTile(new Pair<>(xTo, yTo)).isReserved()
-                    || ChessBoard.getTile(new Pair<>(xTo, yTo)).getPiece().getColor() != movingColor) {
+            if (!toTile.isReserved() || toTile.getPiece().getColor() != this.getColor()) {
                 return true;
             }
         }
-
         return false;
     }
 

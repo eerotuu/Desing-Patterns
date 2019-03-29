@@ -7,6 +7,7 @@ package main.pieces;
 
 import javafx.util.Pair;
 import main.board.ChessBoard;
+import main.board.Tile;
 
 /**
  * DONE
@@ -21,6 +22,9 @@ public class Bishop extends ChessPiece {
 
     @Override
     public boolean isValidMove(Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        
+        Tile toTile = ChessBoard.getTile(to);
+        
         int xFrom = from.getKey();
         int yFrom = from.getValue();
         int xTo = to.getKey();
@@ -28,12 +32,9 @@ public class Bishop extends ChessPiece {
 
         int xNegative;
         int yNegative;
-
-        if (xTo > 7 || xTo < 0 || yTo > 7 || yTo < 0) {
-            return false;
-        }
-
-        int movingColor = ChessBoard.getTile(new Pair<>(xFrom, yFrom)).getPiece().getColor();
+        
+        // out of bounds
+        if (xTo > 7 || xTo < 0 || yTo > 7 || yTo < 0) return false;
 
         int xMovement;
         if (xFrom > xTo) {
@@ -52,21 +53,19 @@ public class Bishop extends ChessPiece {
             yNegative = -1;
         }
 
-        System.out.println(xMovement + " m " + yMovement);
-        if (xMovement != yMovement) {
-            return false;
-        }
-
+        // check that movement is diagonal
+        if (xMovement != yMovement) return false; 
+        
+        // cannot jump over other pieces <- check that path is clear
         for (int i = 1; i < yMovement - 1; i++) {
             if (ChessBoard.getTile(new Pair<>(xFrom + i * xNegative,
                     yFrom + i * yNegative)).isReserved()) {
                 return false;
             }
         }
-
-        return !ChessBoard.getTile(new Pair<>(xTo, yTo)).isReserved()
-                || ChessBoard.getTile(new Pair<>(xTo, yTo)).
-                        getPiece().getColor() != movingColor;
+        
+        return !toTile.isReserved() 
+                || toTile.getPiece().getColor() != this.getColor();
     }
 
     @Override

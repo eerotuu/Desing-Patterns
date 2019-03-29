@@ -12,10 +12,8 @@ import main.pieces.ChessPiece;
  * @author Eero
  */
 public class Tile {
+    
     private ChessPiece currentPiece = null;
-    int xCoord, yCoord;
-    
-    
     
     public boolean isReserved() {
         return currentPiece != null;

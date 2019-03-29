@@ -7,6 +7,7 @@ package main.pieces;
 
 import javafx.util.Pair;
 import main.board.ChessBoard;
+import main.board.Tile;
 
 /**
  * DONE
@@ -20,16 +21,16 @@ public class Knight extends ChessPiece {
 
     @Override
     public boolean isValidMove(Pair<Integer, Integer> from, Pair<Integer, Integer> to) {
+        
+        Tile toTile = ChessBoard.getTile(to);
+        
         int xFrom = from.getKey();
         int yFrom = from.getValue();
         int xTo = to.getKey();
         int yTo = to.getValue();
 
-        if (xTo > 7 || xTo < 0 || yTo > 7 || yTo < 0) {
-            return false;
-        }
-
-        int movingColor = ChessBoard.getTile(new Pair<>(xFrom, yFrom)).getPiece().getColor();
+        // out of bounds
+        if (xTo > 7 || xTo < 0 || yTo > 7 || yTo < 0) return false;
 
         int xMovement;
         if (xFrom > xTo) {
@@ -43,6 +44,8 @@ public class Knight extends ChessPiece {
         } else {
             yMovement = yFrom - yTo;
         }
+        
+        // check that movement is 'L' shaped
         // right
         if ((xMovement == 2 && yMovement == 1) || (xMovement == 2 && yMovement == -1)
                 // left
@@ -52,12 +55,10 @@ public class Knight extends ChessPiece {
                 // down
                 || (xMovement == 1 && yMovement == -2) || (xMovement == -1 && yMovement == -2)) {
 
-            if (!ChessBoard.getTile(new Pair<>(xTo, yTo)).isReserved()
-                    || ChessBoard.getTile(new Pair<>(xTo, yTo)).getPiece().getColor() != movingColor) {
+            if (!toTile.isReserved() || toTile.getPiece().getColor() != this.getColor()) {
                 return true;
             }
         }
-
         return false;
     }
 

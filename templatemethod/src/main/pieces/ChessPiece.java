@@ -27,7 +27,6 @@ public abstract class ChessPiece {
         return this.color;
     }
     
-    
     public String getName() {
         return this.toString();
     }
