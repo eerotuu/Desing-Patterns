@@ -22,11 +22,11 @@ public class PerformanceComputerFactory extends AbstractComputerFactory {
     
     public PerformanceComputerFactory() {
         super();
-        super.add(new Case(300));
-        super.add(new Motherboard(430));
-        super.add(new CPU(1020));
-        super.add(new GPU(1450));
-        super.add(new RAM(215));
-        super.add(new NIC(40)); 
+        super.add(Case.class, 300);
+        super.add(Motherboard.class, 430);
+        super.add(CPU.class, 1020);
+        super.add(GPU.class, 1450);
+        super.add(RAM.class, 215);
+        super.add(NIC.class, 40); 
     }
 }

@@ -21,13 +21,13 @@ public class Computer {
     
     /**
      * 
-     * @return Total price or -1 if computer root component is null (not built)
+     * @return Total price or 0 if computer root component is null (not built)
      */
     public int getPrice() {
         if(pc != null) {
             return pc.getPrice();
         }  
-        return -1;   
+        return 0;   
     }
     
     public void printComponents(){

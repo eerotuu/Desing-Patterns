@@ -15,23 +15,21 @@ import main.components.*;
  */
 public abstract class AbstractComputerFactory implements ComputerFactory {
 
-    private Map<Class, Component> mComponentMap;
+    private Map<Class, Integer> mComponentMap;
 
     public AbstractComputerFactory() {
         mComponentMap = new HashMap();
     }
-    
+
     @Override
-    public void add(Component c) {
+    public void add(Class c, int price) {
         if (mComponentMap != null) {
-            mComponentMap.put(c.getClass(), c);
+            mComponentMap.put(c, price);
         }
     }
-    
+
     @Override
     public void remove(Class c) {
-        Composite root = (Composite) mComponentMap.get(Case.class);
-        root.removeComponent(mComponentMap.get(c));
         mComponentMap.remove(c);
     }
 
@@ -41,16 +39,18 @@ public abstract class AbstractComputerFactory implements ComputerFactory {
     }
 
     private Component createCase() {
-        Composite c = (Composite) mComponentMap.get(Case.class);
-        if (c != null) {
+        Case c = null;
+        if (mComponentMap.containsKey(Case.class)) {
+            c = new Case(mComponentMap.get(Case.class));
             c.addComponent(createMotherboard());
         }
         return c;
     }
 
     private Component createMotherboard() {
-        Composite m = (Composite) mComponentMap.get(Motherboard.class);
-        if (m != null) {
+        Motherboard m = null;
+        if (mComponentMap.containsKey(Motherboard.class)) {
+            m = new Motherboard(mComponentMap.get(Motherboard.class));
             m.addComponent(createCPU());
             m.addComponent(createGPU());
             m.addComponent(createRAM());
@@ -60,20 +60,27 @@ public abstract class AbstractComputerFactory implements ComputerFactory {
     }
 
     private CPU createCPU() {
-        return (CPU) mComponentMap.get(CPU.class);
+        return mComponentMap.containsKey(Motherboard.class) 
+                ? new CPU(mComponentMap.get(CPU.class))
+                : null;
     }
 
     private GPU createGPU() {
-        return (GPU) mComponentMap.get(GPU.class);
+        return mComponentMap.containsKey(Motherboard.class)
+                ? new GPU(mComponentMap.get(GPU.class))
+                : null;
     }
 
     private RAM createRAM() {
-        return (RAM) mComponentMap.get(RAM.class);
+        return mComponentMap.containsKey(RAM.class)
+                ? new RAM(mComponentMap.get(RAM.class))
+                : null;
     }
 
     private NIC createNIC() {
-        return (NIC) mComponentMap.get(NIC.class);
+        return mComponentMap.containsKey(NIC.class) 
+                ? new NIC(mComponentMap.get(NIC.class))
+                : null;
     }
-    
 
 }

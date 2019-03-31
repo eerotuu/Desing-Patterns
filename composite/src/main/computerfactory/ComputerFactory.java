@@ -14,6 +14,6 @@ import main.components.Component;
  */
 public interface ComputerFactory {
     public Component build();
-    public void add(Component c);
+    public void add(Class c, int p);
     public void remove(Class c);
 }

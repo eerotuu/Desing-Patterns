@@ -17,11 +17,11 @@ public class CheapComputerFactory extends AbstractComputerFactory {
     
     public CheapComputerFactory() {
         super();
-        super.add(new Case(20));
-        super.add(new Motherboard(60));
-        super.add(new CPU(40));
-        super.add(new GPU(50));
-        super.add(new RAM(20));
-        super.add(new NIC(20));  
+        super.add(Case.class, 20);
+        super.add(Motherboard.class, 60);
+        super.add(CPU.class, 40);
+        super.add(GPU.class, 50);
+        super.add(RAM.class, 20);
+        super.add(NIC.class, 20); 
     }
 }

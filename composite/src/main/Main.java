@@ -36,16 +36,16 @@ public class Main {
         
         // Custom
         ComputerFactory factory = new CustomComputerFactory();
-        factory.add(new CPU(150));
-        factory.add(new Motherboard(80));
-        factory.add(new Case(60));   
-        factory.add(new GPU(250));
-        factory.add(new RAM(80));
+        factory.add(CPU.class, 140);
+        factory.add(Motherboard.class, 80);
+        factory.add(Case.class, 60);   
+        factory.add(GPU.class, 210);
+        factory.add(RAM.class, 60);
         c.create(factory);
         System.out.println("\nCustom setup, Total: " + c.getPrice() + "€");
         c.printComponents();
         
-        // Remove Motherboard from custom factory -> build
+        // Remove Motherboard from custom factory -> building only creates new Case
         factory.remove(Motherboard.class);
         c.create(factory);
         System.out.println("\nCustom setup, Total: " + c.getPrice() + "€");
