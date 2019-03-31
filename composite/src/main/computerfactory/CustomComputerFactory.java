@@ -5,10 +5,6 @@
  */
 package main.computerfactory;
 
-import java.util.HashMap;
-import java.util.Map;
-import main.components.Component;
-
 /**
  *
  * @author Eero

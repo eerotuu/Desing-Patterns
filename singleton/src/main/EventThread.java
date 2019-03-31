@@ -26,8 +26,13 @@ public class EventThread implements Runnable {
         running = true;
         while (running) {
             try {
-                Thread.sleep((long) (Math.floor(Math.random() * 5000) + 1000));
-                EventLogger.getInstance().log(mName + " did something.");
+                Thread.sleep((long) (Math.floor(Math.random() * 5000) + 10));
+                
+                
+                //EventLogger.getInstance().log(mName + " did something.");
+                
+                // with enum implementation
+                LoggerEnum.INSTANCE.log(mName + "did something.");
             } catch (InterruptedException ex) {
                 Logger.getLogger(EventThread.class.getName()).log(Level.SEVERE, null, ex);
             }

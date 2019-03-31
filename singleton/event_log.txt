@@ -1,17 +1,9 @@
-[Tue Mar 26 16:05:39 EET 2019] : thread-3 did something.
-[Tue Mar 26 16:05:40 EET 2019] : thread-2 did something.
-[Tue Mar 26 16:05:41 EET 2019] : thread-1 did something.
-[Tue Mar 26 16:05:42 EET 2019] : thread-0 did something.
-[Tue Mar 26 16:05:43 EET 2019] : thread-2 did something.
-[Tue Mar 26 16:05:43 EET 2019] : thread-1 did something.
-[Tue Mar 26 16:05:44 EET 2019] : thread-0 did something.
-[Tue Mar 26 16:05:45 EET 2019] : thread-3 did something.
-[Tue Mar 26 16:05:47 EET 2019] : thread-1 did something.
-[Tue Mar 26 16:05:48 EET 2019] : thread-2 did something.
-[Tue Mar 26 16:05:48 EET 2019] : thread-0 did something.
-[Tue Mar 26 16:05:49 EET 2019] : thread-3 did something.
-[Tue Mar 26 16:05:49 EET 2019] : thread-2 did something.
-[Tue Mar 26 16:05:51 EET 2019] : thread-2 did something.
-[Tue Mar 26 16:05:52 EET 2019] : thread-1 did something.
-[Tue Mar 26 16:05:53 EET 2019] : thread-0 did something.
-[Tue Mar 26 16:05:54 EET 2019] : thread-3 did something.
+[Sun Mar 31 12:28:46 EEST 2019] : thread-3did something.
+[Sun Mar 31 12:28:46 EEST 2019] : thread-2did something.
+[Sun Mar 31 12:28:47 EEST 2019] : thread-2did something.
+[Sun Mar 31 12:28:47 EEST 2019] : thread-1did something.
+[Sun Mar 31 12:28:48 EEST 2019] : thread-1did something.
+[Sun Mar 31 12:28:48 EEST 2019] : thread-0did something.
+[Sun Mar 31 12:28:49 EEST 2019] : thread-3did something.
+[Sun Mar 31 12:28:49 EEST 2019] : thread-2did something.
+[Sun Mar 31 12:28:53 EEST 2019] : thread-1did something.

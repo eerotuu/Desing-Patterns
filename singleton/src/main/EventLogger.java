@@ -27,9 +27,13 @@ public class EventLogger {
         }
     }
 
-    public static synchronized EventLogger getInstance() {
+    public static EventLogger getInstance() {
         if (sInstance == null) {
-            sInstance = new EventLogger();
+            synchronized (EventLogger.class) {
+                if(sInstance == null) {
+                    sInstance = new EventLogger();
+                }
+            }
         }
         return sInstance;
     }
