@@ -1,1 +1,1 @@
-# Suunnitelumallit
+# Design patterns course assigments
