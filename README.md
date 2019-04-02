@@ -1,1 +1,1 @@
-# Design patterns course assigments
+# Design patterns course assignments
