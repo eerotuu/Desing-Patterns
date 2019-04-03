@@ -34,10 +34,11 @@ public class SortableList {
 
     public void remove(int i) {
         if (i < size) {
-            for (int j = i; j < size - 1; j++) {
-                arr[j] = arr[j + 1];
+            int numMoved = size - i - 1;
+            if (numMoved > 0) {
+                System.arraycopy(arr, i + 1, arr, i, numMoved);
             }
-            size--;
+            arr[--size] = 0;
         } else {
             throw new ArrayIndexOutOfBoundsException();
         }
